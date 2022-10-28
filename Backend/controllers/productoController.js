@@ -8,7 +8,7 @@ function insert(req, res){
             producto.codigo_barra = req.body.codigo_barra;
             producto.nombre_producto = req.body.nombre_producto;
             producto.precio = req.body.precio;
-            producto.unidproductoad = req.body.unidproductoad;
+            producto.unidad = req.body.unidad;
             producto.stock =req.body.stock;
             producto.save((err, productostore)=>{
                 if(err){
@@ -25,8 +25,8 @@ function insert(req, res){
 }
 
 function eliminar(req,res){
-       let idproducto = req.params._id;
-       Producto.findByIdAndDelete(idproducto, (err)=>{
+       let idProducto = req.params.id;
+       Producto.findByIdAndDelete(idProducto, (err)=>{
         if(err){
             return res.status(500).send({mensaje:'error al eliminar producto de la base de datos'});
         }
@@ -37,13 +37,13 @@ function eliminar(req,res){
 
 function actualizar(req, res)
 {
-    let idproducto = req.params._id;
+    let idproducto = req.params.id;
     codigo_barra = req.body.codigo_barra;
     nombre_producto = req.body.nombre_producto;
     precio = req.body.precio;
-    unidproductoad = req.body.unidproductoad;
+    unidad = req.body.unidad;
     stock =req.body.stock;
-    Producto.findByIdAndUpdate(idproducto,{codigo_barra:codigo_barra, nombre_producto:nombre_producto, precio:precio, unidproductoad:unidproductoad, stock:stock}, (err, producto)=>{
+    Producto.findByIdAndUpdate(idproducto,{codigo_barra:codigo_barra, nombre_producto:nombre_producto, precio:precio, unidad:unidad, stock:stock}, (err, producto)=>{
         if(err){
             return res.status(500).send({mensaje:'error al actualizar el producto de la base de datos'});
         }
@@ -66,7 +66,7 @@ function listar(req, res){
 }
 
 function buscarProducto(req, res){
-    let idproducto = req.params._id;
+    let idproducto = req.params.id;
     Producto.findById(idproducto, (err, producto) =>{
         if(err){
             return res.status(500).send({mensaje:'error al buscar el producto en la base de datos'});
