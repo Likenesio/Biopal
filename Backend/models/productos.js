@@ -12,7 +12,7 @@ const productSchema = schema(
                 require: true
             },
             precio:{
-                type: String,
+                type: Number,
                 require: true
             },
             unidad:{
